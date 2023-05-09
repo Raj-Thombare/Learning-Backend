@@ -1,5 +1,0 @@
-This text file is modified by Rakaa
-
- This is a new line appended!
- This text is appended using writeFile
- This file is renamed to text2.txt from text.txt

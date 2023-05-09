@@ -1,5 +1,5 @@
 
-const error = false;
+const error = true;
 
 // if (error) {
 //     throw new Error("Error Occured!")
@@ -62,7 +62,7 @@ function doSomething() {
 const xyz = async () => {
     try {
         await doSomething()
-    } catch(err) {
+    } catch (err) {
         throw new Error(err.message)
     }
 }

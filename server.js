@@ -1,8 +1,15 @@
 const http = require('http');
 // require('dotenv').config();
 
+const getReq = require('./methods/get-request')
+const postReq = require('./methods/post-request')
+const putReq = require('./methods/put-request')
+const deleteReq = require('./methods/delete-request')
+const movies = require('./data/movies.json')
+
 const PORT = process.env.PORT || 5001;
 const server = http.createServer((req, res) => {
+    req.movies = movies;
     switch (req.method) {
         case "GET":
             getReq(req, res)

@@ -4,7 +4,7 @@
   "description": "This is a vanilla nodejs crud application.",
   "main": "server.js",
   "scripts": {
-    "start":"nodemon server.js"
+    "start": "nodemon server.js"
   },
   "repository": "https://github.com/Raj-Thombare/Learning-Backend.git",
   "author": "Raj Thombare",

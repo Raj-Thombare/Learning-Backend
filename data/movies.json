@@ -33,5 +33,19 @@
     "year": "2015",
     "genre": "Action, Adventure, Fantasy",
     "rating": "7.9"
+  },
+  {
+    "title": "Bhediya",
+    "year": "2022",
+    "genre": "Horror, Comedy, Drama",
+    "rating": "8",
+    "id": "8e6a74b9-3a4c-4179-8262-6f6c77a59d85"
+  },
+  {
+    "title": "Vikram Vedha",
+    "year": "2022",
+    "genre": "Action, Thriller, Drama",
+    "rating": "8",
+    "id": "79005197-83b2-40ff-a68a-94b80770c9c2"
   }
 ]

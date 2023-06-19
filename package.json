@@ -1,0 +1,15 @@
+{
+  "name": "learning-backend",
+  "version": "1.0.0",
+  "description": "``` Philosophy for backend ```: Learn only for making APIs. CDN takes care of the file serving.JSX and React takes care of the templating. Don't learn what is not needed in full-stack dev flow anymore.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "Raj Thombare",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

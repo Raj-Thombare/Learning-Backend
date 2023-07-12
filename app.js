@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-app.set('view engine', 'pug') // set view engine to pug
+app.set('view engine', 'ejs') // set view engine to ejs
+// app.set('view engine', 'pug') // set view engine to pug
 app.set('views', 'views') // set view location
 
 const adminData = require('./routes/admin')

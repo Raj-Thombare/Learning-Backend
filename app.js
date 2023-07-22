@@ -9,17 +9,20 @@ app.set('view engine', 'ejs') // set view engine to ejs
 // app.set('view engine', 'pug') // set view engine to pug
 app.set('views', 'views') // set view location
 
-const adminData = require('./routes/admin')
+const adminRoutes = require('./routes/admin')
 const shopRoutes = require('./routes/shop')
+const errorController = require('./controllers/error')
 
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(express.static(path.join(__dirname, 'public')));
+// it is used to extract the entire body portion of an incoming request stream and exposes it on the req.body property
+// true - it will use the qs library for parsing
+// false - it will use the traditional query string parsing method
 
-app.use('/admin', adminData.router);
+app.use(express.static(path.join(__dirname, 'public'))); //sets up a middleware in Express to serve static files
+
+app.use('/admin', adminRoutes);
 app.use(shopRoutes)
 
-app.use((req, res, next) => {
-    res.status(404).render('404', { pageTitle: "Page not found" })
-})
+app.use(errorController.get404)
 
 app.listen(3000)

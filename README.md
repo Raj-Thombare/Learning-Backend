@@ -4,27 +4,27 @@
 
 #### **1. Writing RESTful API**
 
- - [ ] what's REST?
- - [ ] HTTP methods for REST services
- - [ ] Organising API endpoints
- - [ ] Good naming convention for RESTful services
- - [ ] HTTP Status codes
-     - [ ] 2xx: Success
-     - [ ] 3xx: Redirection
-     - [ ] 4xx: Client Error
-     - [ ] 5xx: Server Error
- - [ ] versioning in REST
+ - [x] what's REST?
+ - [x] HTTP methods for REST services
+ - [x] Organising API endpoints
+ - [x] Good naming convention for RESTful services
+ - [x] HTTP Status codes
+     - [x] 2xx: Success
+     - [x] 3xx: Redirection
+     - [x] 4xx: Client Error
+     - [x] 5xx: Server Error
+ - [x] versioning in REST
  
  #### **2. ExpressJS**
 
- - [ ] Hello world!
- - [ ] basic routing
- - [ ] response types
- - [ ] handling POST data
- - [ ] advanced routing
-     - [ ] arranging by routes
-     - [ ] parameters
- - [ ] middleware
+ - [x] Hello world!
+ - [x] basic routing
+ - [x] response types
+ - [x] handling POST data
+ - [x] advanced routing
+     - [x] arranging by routes
+     - [x] parameters
+ - [x] middleware
  - [ ] hosting an app in prod
  - [ ] exception handling
  - [ ] cors

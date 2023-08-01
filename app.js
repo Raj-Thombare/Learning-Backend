@@ -3,6 +3,8 @@ const path = require('path')
 
 const bodyParser = require('body-parser');
 
+const errorController = require('./controllers/error')
+
 const app = express();
 
 app.set('view engine', 'ejs') // set view engine to ejs
@@ -11,7 +13,6 @@ app.set('views', 'views') // set view location
 
 const adminRoutes = require('./routes/admin')
 const shopRoutes = require('./routes/shop')
-const errorController = require('./controllers/error')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 // it is used to extract the entire body portion of an incoming request stream and exposes it on the req.body property

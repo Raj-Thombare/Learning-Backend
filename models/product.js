@@ -2,6 +2,7 @@
 // const path = require("path")
 
 // const Cart = require('./cart')
+const mongodb = require('mongodb');
 const getDb = require('../util/database').getDb;
 
 // const p = path.join(
@@ -9,11 +10,11 @@ const getDb = require('../util/database').getDb;
 // )
 
 module.exports = class Product {
-    constructor(title, price, description, imgUrl) {
+    constructor(title, price, description, imageUrl) {
         this.title = title;
         this.price = price;
         this.description = description;
-        this.imgUrl = imgUrl;
+        this.imageUrl = imageUrl;
     }
 
     save() {
@@ -28,12 +29,18 @@ module.exports = class Product {
     static fetchAll() {
         const db = getDb();
         return db.collection('products').find().toArray().then(products => {
-            // console.log('FetchAll')
-            // console.log(products)
             return products;
         }).catch(err => {
             console.log(err)
         })
+    }
+
+    static findById(prodId) {
+        const db = getDb();
+        return db.collection('products').find({ _id: new mongodb.ObjectId(prodId) }).next().then(product => {
+            console.log(product)
+            return product;
+        }).catch(err => console.log(err))
     }
 }
 

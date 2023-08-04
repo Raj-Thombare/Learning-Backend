@@ -24,6 +24,17 @@ module.exports = class Product {
             console.log('Error inserting product:', err);
         });
     }
+
+    static fetchAll() {
+        const db = getDb();
+        return db.collection('products').find().toArray().then(products => {
+            // console.log('FetchAll')
+            // console.log(products)
+            return products;
+        }).catch(err => {
+            console.log(err)
+        })
+    }
 }
 
 // const getProductsFromFile = (cb) => {

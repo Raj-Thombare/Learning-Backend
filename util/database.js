@@ -1,7 +1,9 @@
+require('dotenv').config();
+
 const mongodb = require('mongodb');
 const mongoClient = mongodb.MongoClient;
 
-const uri = 'mongodb+srv://Raj:ogsFAMR9sJ5Rh1rW@cluster0.f7mohae.mongodb.net/shop?retryWrites=true&w=majority';
+const uri = process.env.DB_URL;
 
 let _db;
 

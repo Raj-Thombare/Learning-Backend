@@ -26,15 +26,19 @@
      - [x] parameters
  - [x] middleware
  - [ ] hosting an app in prod
- - [ ] exception handling
+ - [x] exception handling
  - [ ] cors
  
  ## ***database***
  
 - [ ] Understanding data modeling.
 - [ ] ORM (Object Relational Mapper)
-    - [ ] intro to mongo and sequelize
-- [ ] Hosting a MongoDB instance on cloud
+    - [x] intro to mongo and sequelize
+- [x] Hosting a MongoDB instance on cloud
+- [ ] MongoDB
+    - [x] basics
+    - [x] CRUD
+    - [x] integration with Express
 - [ ] Mongoose
     - [ ] basics
     - [ ] schema

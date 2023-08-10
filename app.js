@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public'))); //sets up a middleware 
 
 app.use((req, res, next) => {
     User.findById('64d129425582b818b144b32f').then((user) => {
-        req.user = user;
+        req.user = new User(user.name, user.email, user.cart, user._id);
         next();
     }).catch(err => console.log(err))
 })

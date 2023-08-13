@@ -66,12 +66,12 @@ exports.postCart = (req, res, next) => {
     // res.redirect('/cart');
 };
 
-// exports.postCartDeleteProduct = (req, res, next) => {
-//     const prodId = req.body.productId;
-//     req.user.deleteItemFromCart(prodId).then(() => {
-//         res.redirect('/cart')
-//     }).catch(err => console.log(err))
-// }
+exports.postCartDeleteProduct = (req, res, next) => {
+    const prodId = req.body.productId;
+    req.user.deleteItemFromCart(prodId).then(() => {
+        res.redirect('/cart')
+    }).catch(err => console.log(err))
+}
 
 // exports.getOrders = (req, res, next) => {
 //     res.render('shop/orders', {

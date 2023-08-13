@@ -75,17 +75,20 @@ exports.postCartDeleteProduct = (req, res, next) => {
 
 exports.postOrder = (req, res, next) => {
     let fetchedCart;
-    req.user.addOrder().then(result => {
-        res.redirect('/orders')
-    }).catch(err => console.log(err))
-}
+    req.user
+        .addOrder()
+        .then(result => {
+            res.redirect('/orders');
+        })
+        .catch(err => console.log(err));
+};
 
-// exports.getOrders = (req, res, next) => {
-//     res.render('shop/orders', {
-//         path: '/orders',
-//         pageTitle: 'Your Orders'
-//     });
-// };
+exports.getOrders = (req, res, next) => {
+    res.render('shop/orders', {
+        path: '/orders',
+        pageTitle: 'Your Orders'
+    });
+};
 
 // exports.getCheckout = (req, res, next) => {
 //     res.render('shop/checkout', {

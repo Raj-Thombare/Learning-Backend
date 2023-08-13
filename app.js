@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public'))); //sets up a middleware in Express to serve static files
 
 app.use((req, res, next) => {
-    User.findById('64d129425582b818b144b32f').then((user) => {
+    User.findById('64d8deaf4de4994306441e4f').then((user) => {
         req.user = new User(user.name, user.email, user.cart, user._id);
         next();
     }).catch(err => console.log(err))

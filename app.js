@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error')
 // const mongoConnect = require('./util/database').mongoConnect;
-const User = require('./models/user')
+// const User = require('./models/user')
 
 const app = express();
 
@@ -37,12 +37,9 @@ app.use(shopRoutes)
 app.use(errorController.get404)
 
 mongoose.connect('mongodb+srv://Raj:ogsFAMR9sJ5Rh1rW@cluster0.f7mohae.mongodb.net/shop?retryWrites=true&w=majority').then(result => {
+    console.log('DB Connected!')
     app.listen(3000)
 }).catch(err => console.log(err))
-
-// mongoConnect(() => {
-//     app.listen(3000)
-// })
 
 
 

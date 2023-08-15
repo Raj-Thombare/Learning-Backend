@@ -36,7 +36,7 @@ app.use(shopRoutes)
 
 app.use(errorController.get404)
 
-mongoose.connect('mongodb+srv://Raj:ogsFAMR9sJ5Rh1rW@cluster0.f7mohae.mongodb.net/shop?retryWrites=true&w=majority').then(result => {
+mongoose.connect('mongodb+srv://Raj:SeOwCAcCYagkY0bD@cluster0.f7mohae.mongodb.net/').then(result => {
     User.findOne().then(user => {
         if (!user) {
             const user = new User({

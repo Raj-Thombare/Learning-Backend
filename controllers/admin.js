@@ -13,7 +13,6 @@ exports.postAddProduct = (req, res, next) => {
     const imageUrl = req.body.imageUrl;
     const price = req.body.price;
     const description = req.body.description;
-
     const product = new Product({
         title: title,
         price: price,
@@ -27,6 +26,17 @@ exports.postAddProduct = (req, res, next) => {
     }).catch(err => {
         console.log(err)
     })
+}
+
+exports.getProducts = (req, res, next) => {
+    Product.find().then((products) => { //polulate('userId') will display all info instead
+        console.log(products)           // of just userId
+        res.render('admin/products', {
+            prods: products,                // select('title price') - selects fields
+            pageTitle: 'Admin Products',
+            path: '/admin/products'
+        });
+    }).catch(err => console.log(err))
 }
 
 exports.getEditProduct = (req, res, next) => {
@@ -65,16 +75,6 @@ exports.postEditProduct = (req, res, next) => {
         return product.save();
     }).then(result => {
         res.redirect('/admin/products')
-    }).catch(err => console.log(err))
-}
-
-exports.getProducts = (req, res, next) => {
-    Product.find().then((products) => {
-        res.render('admin/products', {
-            prods: products,
-            pageTitle: 'Admin Products',
-            path: '/admin/products'
-        });
     }).catch(err => console.log(err))
 }
 

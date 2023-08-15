@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public'))); //sets up a middleware in Express to serve static files
 
 app.use((req, res, next) => {
-    User.findById('64db6e255083c979d9910591').then((user) => {
+    User.findById('64db8624bab01c7d3eaa0c53').then((user) => {
         req.user = user;
         next();
     }).catch(err => console.log(err))
@@ -36,7 +36,7 @@ app.use(shopRoutes)
 
 app.use(errorController.get404)
 
-mongoose.connect('mongodb+srv://Raj:SeOwCAcCYagkY0bD@cluster0.f7mohae.mongodb.net/').then(result => {
+mongoose.connect('mongodb+srv://Raj:SeOwCAcCYagkY0bD@cluster0.f7mohae.mongodb.net/shop').then(result => {
     User.findOne().then(user => {
         if (!user) {
             const user = new User({

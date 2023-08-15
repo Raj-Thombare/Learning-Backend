@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error')
 // const mongoConnect = require('./util/database').mongoConnect;
-// const User = require('./models/user')
+const User = require('./models/user')
 
 const app = express();
 
@@ -24,12 +24,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(express.static(path.join(__dirname, 'public'))); //sets up a middleware in Express to serve static files
 
-// app.use((req, res, next) => {
-//     User.findById('64d8deaf4de4994306441e4f').then((user) => {
-//         req.user = new User(user.name, user.email, user.cart, user._id);
-//         next();
-//     }).catch(err => console.log(err))
-// })
+app.use((req, res, next) => {
+    User.findById('64db6e255083c979d9910591').then((user) => {
+        req.user = new User(user.name, user.email, user.cart, user._id);
+        next();
+    }).catch(err => console.log(err))
+})
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes)
@@ -37,6 +37,18 @@ app.use(shopRoutes)
 app.use(errorController.get404)
 
 mongoose.connect('mongodb+srv://Raj:ogsFAMR9sJ5Rh1rW@cluster0.f7mohae.mongodb.net/shop?retryWrites=true&w=majority').then(result => {
+    User.findOne().then(user => {
+        if (!user) {
+            const user = new User({
+                name: 'Rakaa',
+                email: 'rakaa@test.com',
+                cart: {
+                    items: []
+                }
+            })
+            user.save();
+        }
+    })
     console.log('DB Connected!')
     app.listen(3000)
 }).catch(err => console.log(err))

@@ -28,15 +28,15 @@ const productSchema = new Schema({
 
 module.exports = mongoose.model('Product', productSchema);
 
-// // const fs = require("fs")
-// // const path = require("path")
+// const fs = require("fs")
+// const path = require("path")
 
 // const mongodb = require('mongodb');
 // const getDb = require('../util/database').getDb;
 
-// // const p = path.join(
-// //     path.dirname(require.main.filename), "data", "products.json"
-// // )
+// const p = path.join(
+//     path.dirname(require.main.filename), "data", "products.json"
+// )
 
 // module.exports = class Product {
 //     constructor(title, price, description, imageUrl, id, userId) {

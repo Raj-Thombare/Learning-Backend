@@ -33,19 +33,18 @@
 
 - [ ] Understanding data modeling.
 - [x] ORM (Object Relational Mapper)
-  - [x] intro to mongo and sequelize
+  - [x] intro to mongo
 - [x] Hosting a MongoDB instance on cloud
 - [x] MongoDB
   - [x] basics
   - [x] CRUD
   - [x] integration with Express
-- [ ] Mongoose
-  - [ ] basics
-  - [ ] schema
-  - [ ] relationships
-  - [ ] CRUD
-  - [ ] mongoose promises
-  - [ ] integration with Express
+- [x] Mongoose
+  - [x] basics
+  - [x] schema
+  - [x] relationships
+  - [x] CRUD
+  - [x] mongoose promises
 
 ## **_user authentication_**
 

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     name: {
@@ -57,7 +57,12 @@ userSchema.methods.removeFromCart = function (productId) {
     return this.save();
 }
 
-module.exports = mongoose.model('User', userSchema)
+userSchema.methods.clearCart = function () {
+    this.cart = { items: [] }
+    return this.save();
+}
+
+module.exports = mongoose.model('User', userSchema);
 
 // const mongodb = require('mongodb');
 // const { getDb } = require("../util/database");

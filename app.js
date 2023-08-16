@@ -1,10 +1,11 @@
 const express = require('express');
 const path = require('path')
+const mongoose = require('mongoose')
 
 const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error')
-const mongoConnect = require('./util/database').mongoConnect;
+// const mongoConnect = require('./util/database').mongoConnect;
 const User = require('./models/user')
 
 const app = express();
@@ -24,8 +25,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public'))); //sets up a middleware in Express to serve static files
 
 app.use((req, res, next) => {
-    User.findById('64d8deaf4de4994306441e4f').then((user) => {
-        req.user = new User(user.name, user.email, user.cart, user._id);
+    User.findById('64db8624bab01c7d3eaa0c53').then((user) => {
+        req.user = user;
         next();
     }).catch(err => console.log(err))
 })
@@ -35,10 +36,22 @@ app.use(shopRoutes)
 
 app.use(errorController.get404)
 
-mongoConnect(() => {
+mongoose.connect('mongodb+srv://Raj:SeOwCAcCYagkY0bD@cluster0.f7mohae.mongodb.net/shop').then(result => {
+    User.findOne().then(user => {
+        if (!user) {
+            const user = new User({
+                name: 'Rakaa',
+                email: 'rakaa@test.com',
+                cart: {
+                    items: []
+                }
+            })
+            user.save();
+        }
+    })
+    console.log('DB Connected!')
     app.listen(3000)
-})
+}).catch(err => console.log(err))
 
-// app.listen(3000);
 
 

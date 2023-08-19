@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const session = require("express-session");
 
 const bodyParser = require("body-parser");
 
@@ -24,6 +25,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // false - it will use the traditional query string parsing method
 
 app.use(express.static(path.join(__dirname, "public"))); //sets up a middleware in Express to serve static files
+app.use(
+  session({ secret: "My Secret", resave: false, saveUninitialized: false })
+);
 
 app.use((req, res, next) => {
   User.findById("64db8624bab01c7d3eaa0c53")

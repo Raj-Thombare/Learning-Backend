@@ -3,6 +3,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const mongoDBStore = require("connect-mongodb-session")(session);
+const flash = require("connect-flash");
 
 const bodyParser = require("body-parser");
 
@@ -42,6 +43,8 @@ app.use(
     store: store,
   })
 );
+
+app.use(flash());
 
 app.use((req, res, next) => {
   if (!req.session.user) {

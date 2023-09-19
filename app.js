@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const mongoDBStore = require("connect-mongodb-session")(session);
 const flash = require("connect-flash");
+const multer = require("multer");
 
 const bodyParser = require("body-parser");
 
@@ -20,6 +21,29 @@ const store = new mongoDBStore({
   collection: "sessions",
 });
 
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./images/");
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const filename = uniqueSuffix + "-" + file.originalname;
+    cb(null, filename);
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === "image/png" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/jpeg"
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
 app.set("view engine", "ejs"); // set view engine to ejs
 // app.set('view engine', 'pug') // set view engine to pug
 app.set("views", "views"); // set view location
@@ -33,8 +57,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // it is used to extract the entire body portion of an incoming request stream and exposes it on the req.body property
 // true - it will use the qs library for parsing
 // false - it will use the traditional query string parsing method
-
+app.use(
+  multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
+);
 app.use(express.static(path.join(__dirname, "public"))); //sets up a middleware in Express to serve static files
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(
   session({
     secret: "My Secret",

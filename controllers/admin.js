@@ -1,27 +1,44 @@
 const Product = require("../models/product");
 
 exports.getAddProduct = (req, res, next) => {
-  if (req.session.isLoggedIn) {
-    res.render("admin/edit-product", {
-      pageTitle: "Add Product",
-      path: "/admin/add-product",
-      editing: false,
-      isAuthenticated: req.session.isLoggedIn,
-    });
+  if (!req.session.isLoggedIn) {
+    return res.redirect("/login");
   }
-  res.redirect("/login");
+  res.render("admin/edit-product", {
+    pageTitle: "Add Product",
+    path: "/admin/add-product",
+    editing: false,
+    isAuthenticated: req.session.isLoggedIn,
+  });
 };
 
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
-  const imageUrl = req.body.imageUrl;
+  const image = req.file;
   const price = req.body.price;
   const description = req.body.description;
+
+  if (!image) {
+    return res.status(422).render("admin/edit-product", {
+      pageTitle: "Add Product",
+      path: "/admin/add-product",
+      editing: false,
+      isAuthenticated: req.session.isLoggedIn,
+      product: {
+        title: title,
+        price: price,
+        description: description,
+      },
+    });
+  }
+
+  const imageUrl = image.path;
+
   const product = new Product({
     title: title,
+    imageUrl: imageUrl,
     price: price,
     description: description,
-    imageUrl: imageUrl,
     userId: req.user,
   });
 
@@ -77,7 +94,7 @@ exports.postEditProduct = (req, res, next) => {
   const updatedTitle = req.body.title;
   const updatedPrice = req.body.price;
   const updatedDesc = req.body.description;
-  const updatedImgUrl = req.body.imageUrl;
+  const image = req.file;
 
   Product.findById(prodId)
     .then((product) => {
@@ -87,7 +104,11 @@ exports.postEditProduct = (req, res, next) => {
       product.title = updatedTitle;
       product.price = updatedPrice;
       product.description = updatedDesc;
-      product.imageUrl = updatedImgUrl;
+
+      if (image) {
+        product.imageUrl = image.file;
+      }
+
       return product.save().then((result) => {
         res.redirect("/admin/products");
       });

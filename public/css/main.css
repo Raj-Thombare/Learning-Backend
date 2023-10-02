@@ -247,6 +247,7 @@ form {
   background: rgb(255, 176, 176);
   color: red;
 }
+
 .pagination {
   text-align: center;
 }
@@ -260,10 +261,12 @@ form {
 }
 
 .pagination a:hover,
-.pagination a:active {
+.pagination a:active,
+.pagination a.active {
   background: #00695c;
   color: white;
 }
+
 @media (min-width: 768px) {
   .main-header__nav {
     display: flex;
